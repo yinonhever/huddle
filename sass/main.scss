@@ -1,0 +1,490 @@
+// MIXINS
+@mixin respond-phone {
+  @media all and (max-width: 375px) {
+    @content;
+  }
+}
+
+@mixin respond-tablet {
+  @media all and (max-width: 900px) {
+    @content;
+  }
+}
+
+@mixin respond-tab-land {
+  @media all and (max-width: 1200px) {
+    @content;
+  }
+}
+
+// VARIABLES
+$color-primary: #ff52bf;
+$color-neutral-dark: #00252e;
+$color-neutral-light: #f5faff;
+$color-grey: #777;
+
+$body-text-size: 1.6rem;
+$primary-heading-size: 4rem;
+$secondary-heading-size: 3.3rem;
+
+// BASE
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px
+
+  @include respond-tablet {
+    font-size: 8px;
+  }
+}
+
+body {
+  box-sizing: border-box;
+}
+
+// TYPOGRAPHY
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: $body-text-size;
+  color: $color-neutral-dark;
+
+  @include respond-tablet {
+    font-size: 1.75rem;
+  }
+}
+
+h1,
+h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+}
+
+.heading-primary {
+  font-size: $primary-heading-size;
+  padding: 0 5rem;
+}
+
+.heading-secondary {
+  font-size: $secondary-heading-size;
+}
+
+/////////// COMPONENTS
+// BUTTON
+.btn {
+  &,
+  &:link,
+  &:visited {
+    text-decoration: none;
+    border-radius: 25px;
+    border: 1px solid $color-primary;
+    padding: 1rem 4rem;
+
+    // for the <button> element
+    cursor: pointer;
+    outline: none;
+    font-size: inherit;
+  }
+
+  &--white {
+    color: $color-primary;
+
+    &:hover {
+      color: #fff;
+      background-color: $color-primary;
+    }
+  }
+
+  &--pink {
+    background-color: $color-primary;
+    color: #fff;
+    font-weight: 600;
+
+    &:hover {
+      background-color: #fff;
+      color: $color-primary;
+    }
+  }
+
+  &--wide {
+    padding: 1.25rem 6rem !important;
+    box-shadow: 0 0.5rem 2.5rem rgba($color-neutral-dark, 0.2);
+  }
+
+  &--square {
+    border-radius: 5px !important;
+  }
+}
+
+// MOCKUP
+.mockup {
+  text-align: center;
+
+  &__img {
+    width: 70%;
+
+    @include respond-tablet {
+      width: 80%;
+    }
+  }
+}
+
+/////////// LAYOUT
+//HEADER
+.header {
+  padding: 4rem 7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include respond-tablet {
+    padding: 3rem 2.5rem;
+  }
+
+  .logo {
+    @include respond-tablet {
+      width: 35%;
+    }
+  }
+}
+
+//INTRO
+.intro {
+  text-align: center;
+  padding: 10rem 0;
+
+  @include respond-tablet {
+    padding: 8rem 0 12rem;
+  }
+
+  &__text {
+    margin: 2rem auto 5rem;
+    width: 50rem;
+    line-height: 1.6;
+
+    @include respond-tablet {
+      width: 75%;
+    }
+  }
+}
+
+//STATS
+.stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rem 22.5% 5rem;
+
+  @include respond-tablet {
+    flex-direction: column;
+    padding: 5rem 0 0;
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include respond-tablet {
+      margin: 5rem auto;
+    }
+  }
+
+  &__icon {
+    align-self: flex-start;
+
+    @include respond-tablet {
+      height: 4rem;
+      width: 4rem;
+    }
+  }
+
+  &__number {
+    font-size: 7rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+  }
+
+  &__text {
+    color: $color-grey;
+  }
+}
+
+//FEATURES
+.features {
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 11rem;
+    position: relative;
+
+    @include respond-tablet {
+      flex-direction: column !important;
+      padding-left: 3rem;
+      padding-right: 3rem;
+      text-align: center;
+    }
+
+    &--colored {
+      background-color: $color-neutral-light;
+      flex-direction: row-reverse;
+      margin: 20rem 0;
+
+      @include respond-tablet {
+        padding-top: 10rem;
+        padding-bottom: 10rem;
+      }
+
+      &::before,
+      &::after {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      &--1 {
+        &::before {
+          content: url(../images/bg-section-top-desktop-1.svg);
+          bottom: 95%;
+
+          @include respond-phone {
+            content: url(../images/bg-section-top-mobile-1.svg);
+            bottom: 99%;
+          }
+        }
+
+        &::after {
+          content: url(../images/bg-section-bottom-desktop-1.svg);
+          top: 95%;
+
+          @include respond-phone {
+            content: url(../images/bg-section-bottom-mobile-1.svg);
+            top: 99%;
+          }
+        }
+      }
+
+      &--2 {
+        &::before {
+          content: url(../images/bg-section-top-desktop-2.svg);
+          bottom: 95%;
+
+          @include respond-phone {
+            content: url(../images/bg-section-top-mobile-2.svg);
+            bottom: 99%;
+          }
+        }
+
+        &::after {
+          content: url(../images/bg-section-bottom-desktop-2.svg);
+          top: 95%;
+
+          @include respond-phone {
+            content: url(../images/bg-section-bottom-mobile-2.svg);
+            top: 99%;
+          }
+        }
+      }
+    }
+  }
+
+  &__img,
+  &__content {
+    width: 43%;
+  }
+
+  @include respond-tablet {
+    &__img {
+      width: 75%;
+      margin-bottom: 10rem;
+    }
+
+    &__content {
+      width: 95%;
+    }
+  }
+
+  &__text {
+    line-height: 1.6;
+    margin-top: 1.5rem;
+
+    @include respond-tablet {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+//CTA
+.cta {
+  text-align: center;
+  margin: 7.5rem 0 32.5rem;
+
+  @include respond-tablet {
+    padding: 0 5%;
+  }
+
+  @include respond-phone {
+    margin-bottom: 55%;
+  }
+
+  &__heading {
+    margin-bottom: 4rem;
+
+    @include respond-tablet {
+      font-size: $primary-heading-size;
+    }
+  }
+}
+
+//FOOTER
+.footer {
+  padding: 8rem 11rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: $color-neutral-dark;
+  color: #fff;
+  position: relative;
+
+  @include respond-tablet {
+    flex-direction: column-reverse;
+    padding: 8rem 8%;
+  }
+
+  &::before {
+    content: url(../images/bg-footer-top-desktop.svg);
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 98%;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+
+    @include respond-phone {
+      content: url(../images/bg-footer-top-mobile.svg);
+    }
+  }
+
+  &__left {
+    width: 35%;
+  }
+
+  &__right {
+    width: 42.5%;
+
+    .footer__text {
+      width: 80%;
+      margin-bottom: 3.5rem !important;
+    }
+
+    @include respond-tablet {
+      margin-bottom: 10rem !important;
+    }
+  }
+
+  @include respond-tablet {
+    &__left,
+    &__right,
+    &__right .footer__text {
+      width: 100%;
+    }
+  }
+
+  &__text {
+    line-height: 1.6;
+    margin: 3rem 0;
+
+    @include respond-tablet {
+      margin: 2rem 0;
+    }
+  }
+
+  &__contact-row {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &__contact-icon {
+    margin-right: 2.15rem;
+  }
+
+  &__social-row {
+    margin-top: 7rem;
+  }
+
+  &__social-icon {
+    &:link,
+    &:visited {
+      font-size: 3.5rem;
+      text-decoration: none;
+      color: inherit;
+      margin-right: 2.25rem;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  &__form {
+    display: flex;
+
+    @include respond-tab-land {
+      flex-direction: column;
+
+      .btn {
+        align-self: flex-end;
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+      }
+    }
+  }
+
+  &__input {
+    border-radius: 5px;
+    padding: 0 3rem;
+    width: 100%;
+    margin-right: 3rem;
+
+    @include respond-tab-land {
+      height: 5.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &:focus {
+      outline: none;
+      font-size: $body-text-size;
+    }
+  }
+
+  ::placeholder {
+    color: $color-grey;
+    font-family: inherit;
+    font-size: $body-text-size;
+  }
+
+  &__logo {
+    @include respond-tablet {
+      width: 20rem;
+    }
+  }
+}
